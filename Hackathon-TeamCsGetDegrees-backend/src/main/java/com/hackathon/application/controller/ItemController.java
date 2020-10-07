@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,14 +29,14 @@ public class ItemController {
 	private TagService tg;
 	
 	private HashMap<Integer, ArrayList<Tag>> tagMappings = new HashMap<Integer, ArrayList<Tag>>();
-	public ItemController() {
-		
-		//tagMappings.get(1).add(itemRepo.findById(4));
-		
-	}
+//	public ItemController() {
+//		
+//		
+//	}
 	
-	@GetMapping("hi")
-	public void test() {
+	
+	@PostMapping("tags")
+	public ResponseEntity<List<Tag>> createAcc(@RequestBody List<Tag> t) {
 		ArrayList<Tag> one = new ArrayList<Tag>();
 		one.add(tg.findById(4));
 		one.add(tg.findById(5));
@@ -59,15 +60,16 @@ public class ItemController {
 		tagMappings.put(1, one);
 		tagMappings.put(4, four);
 		tagMappings.put(8, eight);
-		System.out.println(tg.findAll());
-		for (Map.Entry<Integer,ArrayList<Tag>> entry : tagMappings.entrySet())  
-            System.out.println("Key = " + entry.getKey() + 
-                             ", Value = " + entry.getValue()); 
+		
+//		System.out.println(tg.findAll());
+//		for (Map.Entry<Integer,ArrayList<Tag>> entry : tagMappings.entrySet())  
+//            System.out.println("Key = " + entry.getKey() + 
+//                             ", Value = " + entry.getValue()); 
+		
+		Tag recentTag = t.get(t.size()-1);
+		ArrayList<Tag> temp = tagMappings.get(recentTag.getTagId());
+		
+		return new ResponseEntity<List<Tag>>(temp,HttpStatus.ACCEPTED);
 	}
-	
-//	@PostMapping("tags")
-//	public ResponseEntity<List<Tag>> createAcc(@RequestBody List<Tag> t) {
-//		
-//	}
 	
 }
