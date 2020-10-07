@@ -1,0 +1,100 @@
+use hackathondb;
+
+insert into item (item_name, description, price) values ("Spalding King of the Beach Volleyball", "King of the beach tournament volleyball", 49.99);
+insert into item (item_name, description, price) values ("Mikasa Beach Volleyball ", "Mikasa Sarah Hughes signature beach volleyball", 17.99);
+insert into item (item_name, description, price) values ("Wilson AVP Modern Volleyball", "Wilson AVP Modern Volleyball", 14.99);
+insert into item (item_name, description, price) values ("Wilson Ocean Ball", "Wilson Ocean Graffiti Volleyball ", 17.99);
+insert into item (item_name, description, price) values ("Wilson AVP Replica", "Wilson AVP Replica Outdoor Volleyball", 16.99);
+insert into item (item_name, description, price) values ("Mikasa Varsity Beach", "Mikasa Varsity Series Beach Classic Volleyball", 19.99);
+insert into item (item_name, description, price) values ("Wilson OPTX Game Volleyball", "Wilson OPTX AVP Game Volleyball", 64.99);
+insert into item (item_name, description, price) values ("Wilson OPTX Replica Game Volleyball", "Wilson OPTX AVP Tour Replica Game Volleyball", 24.99);
+insert into item (item_name, description, price) values ("BCG Soft Outdoor Volleyball", "BCG Soft Series Spike Outdoor Volleyball", 9.99);
+insert into item (item_name, description, price) values ("Tachikara", "Tachikara ZigZag Outdoor Volleyball", 17.99);
+
+
+
+insert into tag values (1, 0, "Sports");
+insert into tag values (2, 0, "Apparel");
+insert into tag values (3, 0, "Shoes");
+insert into tag values (4, 0, "Volleyball");
+insert into tag values (5, 0, "Football");
+insert into tag values (6, 0, "Basketball");
+insert into tag values (7, 0, "Indoor");
+insert into tag values (8, 0, "Outdoor");
+insert into tag values (9, 1, "Wilson");
+insert into tag values (10, 1, "Mikasa");
+insert into tag values (11, 1, "Tachikara");
+insert into tag values (12, 1, "Molten");
+insert into tag values (13, 1, "BCG");
+insert into tag values (14, 1, "Spalding");
+
+
+insert into item_tag(item_id, tag_id) values(1,1);
+insert into item_tag(item_id, tag_id) values(1,4);
+insert into item_tag(item_id, tag_id) values(1,8);
+insert into item_tag(item_id, tag_id) values(1,14);
+
+
+insert into item_tag(item_id, tag_id) values(2,1);
+insert into item_tag(item_id, tag_id) values(2,4);
+insert into item_tag(item_id, tag_id) values(2,8);
+insert into item_tag(item_id, tag_id) values(2,10);
+
+
+insert into item_tag(item_id, tag_id) values(3,1);
+insert into item_tag(item_id, tag_id) values(3,4);
+insert into item_tag(item_id, tag_id) values(3,8);
+insert into item_tag(item_id, tag_id) values(3,9);
+
+
+insert into item_tag(item_id, tag_id) values(4,1);
+insert into item_tag(item_id, tag_id) values(4,4);
+insert into item_tag(item_id, tag_id) values(4,8);
+insert into item_tag(item_id, tag_id) values(4,9);
+
+
+insert into item_tag(item_id, tag_id) values(5,1);
+insert into item_tag(item_id, tag_id) values(5,4);
+insert into item_tag(item_id, tag_id) values(5,8);
+insert into item_tag(item_id, tag_id) values(5,9);
+
+
+insert into item_tag(item_id, tag_id) values(6,1);
+insert into item_tag(item_id, tag_id) values(6,4);
+insert into item_tag(item_id, tag_id) values(6,8);
+insert into item_tag(item_id, tag_id) values(6,11);
+
+
+insert into item_tag(item_id, tag_id) values(7,1);
+insert into item_tag(item_id, tag_id) values(7,4);
+insert into item_tag(item_id, tag_id) values(7,8);
+insert into item_tag(item_id, tag_id) values(7,9);
+
+
+insert into item_tag(item_id, tag_id) values(8,1);
+insert into item_tag(item_id, tag_id) values(8,4);
+insert into item_tag(item_id, tag_id) values(8,8);
+insert into item_tag(item_id, tag_id) values(8,9);
+
+
+insert into item_tag(item_id, tag_id) values(9,1);
+insert into item_tag(item_id, tag_id) values(9,4);
+insert into item_tag(item_id, tag_id) values(9,8);
+insert into item_tag(item_id, tag_id) values(9,13);
+
+
+insert into item_tag(item_id, tag_id) values(10,1);
+insert into item_tag(item_id, tag_id) values(10,4);
+insert into item_tag(item_id, tag_id) values(10,8);
+insert into item_tag(item_id, tag_id) values(10,11);
+
+select * from item;
+select * from tag;
+select * from item_tag;
+
+
+
+
+
+
+
