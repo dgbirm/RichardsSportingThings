@@ -1,0 +1,79 @@
+import React from "react";
+import ImageMapper from 'react-image-mapper';
+
+import logo from '../logo.svg';
+
+class Thing extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            map: {
+                name: 'logo', areas: [
+                    { _id: 'five', shape: 'poly', coords: [100, 100, 105, 105, 105, 505, 100, 500], preFillColor: 'black' },
+                    { _id: 'six', shape: 'poly', coords: [100, 100, 105, 105, 505, 505, 500, 500], preFillColor: 'black' },
+                    { _id: 'seven', shape: 'poly', coords: [100, 100, 105, 105, 505, 105, 500, 100], preFillColor: 'black' },
+                    { _id: 'one', shape: 'circle', coords: [100, 100, 100], preFillColor: 'blue' },
+                    { _id: 'teo', shape: 'circle', coords: [100, 500, 100], preFillColor: 'green' },
+                    { _id: 'three', shape: 'circle', coords: [500, 100, 100], preFillColor: 'black' },
+                    { _id: 'four', shape: 'circle', coords: [500, 500, 100], preFillColor: 'orange' },
+                ]
+            }
+        }
+    }
+    //figure out a way to put text boxs there
+    //use use image height and width
+    //set a transparent image
+
+    checkCollision(mapx, int) {
+        for (var i = 3; i < 7; i++) {
+            if (i != int) {
+                var a = mapx.areas[i].coords[0];
+                var b = mapx.areas[i].coords[1];
+                var c = mapx.areas[i].coords[2];
+                var x = mapx.areas[int].coords[0] - a;
+                var y = mapx.areas[int].coords[1] - b;
+                var r = mapx.areas[int].coords[2] + c;
+                console.log( x + '' + y + + r);
+                if (Math.sqrt(x * x + y * y) < r) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    generateCoords = () => {
+        var mapx = this.state.map;
+        const screenx = window.innerWidth - 300;
+        const screeny = window.innerHeight - 500;
+        for (var i = 3; i < 7; i++) {
+            do {
+                const randx = 150 + Math.random() * screenx;
+                const randy = 150 + Math.random() * screeny;
+                const rands = 80 + Math.random() * 40;
+                mapx.areas[i].coords = [randx, randy, rands];
+            } while (this.checkCollision(mapx, i));
+        }
+        mapx.areas[0].coords = [mapx.areas[3].coords[0], mapx.areas[3].coords[1], mapx.areas[3].coords[0] + 5, mapx.areas[3].coords[1] + 5,
+        mapx.areas[4].coords[0] + 5, mapx.areas[4].coords[1] + 5, mapx.areas[4].coords[0], mapx.areas[4].coords[1]];
+        mapx.areas[1].coords = [mapx.areas[3].coords[0], mapx.areas[3].coords[1], mapx.areas[3].coords[0] + 5, mapx.areas[3].coords[1] + 5,
+        mapx.areas[5].coords[0] + 5, mapx.areas[5].coords[1] + 5, mapx.areas[5].coords[0], mapx.areas[5].coords[1]];
+        mapx.areas[2].coords = [mapx.areas[3].coords[0], mapx.areas[3].coords[1], mapx.areas[3].coords[0] + 5, mapx.areas[3].coords[1] + 5,
+        mapx.areas[6].coords[0] + 5, mapx.areas[6].coords[1] + 5, mapx.areas[6].coords[0], mapx.areas[6].coords[1]];
+
+        this.setState({ map: mapx })
+    }
+
+    onclick = () => {
+
+        this.generateCoords();
+    }
+
+    render() {
+        return <div>
+            <ImageMapper src={logo} map={this.state.map} onClick={() => {this.onclick() }} width={10000} />
+        </div>
+    }
+}
+
+export default Thing;
