@@ -65,9 +65,12 @@ public class ItemTagController {
 		System.out.println("Tag NAME");
 		System.out.println(tags.get(0).getTagName());
 		System.out.println("PReceding node of tag entered: " + precede);
+		int count1 = 0;
+		int max = tags.size()-1;
+		while (count1 <= max ) {
 		for(Tag tag: tags) {
 			for(ItemTag i: itemTags) {
-				if(tag.getTagId()== i.getTagId() && tag.getLevel() >= level && tags.get(0).getPrecedingNode() == tag.getPrecedingNode()) {
+				if(tag.getTagId()== i.getTagId() && tag.getLevel() >= level && tags.get(count1).getPrecedingNode() == tag.getPrecedingNode()) {
 					foundIds.add(i.getItemId());
 					System.out.println("Name" + tag.getTagName());
 					System.out.println("TagID:  "  + tag.getTagId());
@@ -77,6 +80,8 @@ public class ItemTagController {
 					System.out.println(i.getItemId());
 				}
 			}
+		count1++;
+		}
 		}
 		System.out.println("");
 		for(int i: foundIds) {
@@ -100,17 +105,15 @@ public class ItemTagController {
 		List<Item> reducedItems = new ArrayList();
 		int count = 0;
 		for(Item i: finalItems) {
-			if(count <= 3) {
-				if(specialKeys.contains(i.getSpecialKey())) {
+		
+				if(i.getSpecialKey()!= null) {
 					reducedItems.add(i);
 				}
-			}
-		
-		count++;
+
 		}
 		
-		if(reducedItems.size() == 3) {
-			return reducedItems;
+		if(reducedItems.size() >= 3) {
+			return reducedItems.subList(0, 3);
 		}
 		else {
 			
