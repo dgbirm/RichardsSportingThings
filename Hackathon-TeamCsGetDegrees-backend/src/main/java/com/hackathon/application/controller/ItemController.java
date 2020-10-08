@@ -1,6 +1,5 @@
 package com.hackathon.application.controller;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,11 +29,6 @@ public class ItemController {
 	private TagService tg;
 	
 	private HashMap<Integer, ArrayList<Tag>> tagMappings = new HashMap<Integer, ArrayList<Tag>>();
-//	public ItemController() {
-//		
-//		
-//	}
-	
 	
 	@PostMapping("tags")
 	public ResponseEntity<List<Tag>> createAcc(@RequestBody List<Tag> t) {
@@ -72,10 +66,5 @@ public class ItemController {
 		
 		return new ResponseEntity<List<Tag>>(temp,HttpStatus.ACCEPTED);
 	}
-
-//	@PostMapping("tags")
-//	public ResponseEntity<List<Tag>> createAcc(@RequestBody List<Tag> t) {
-//		
-//	}
-
+	
 }
