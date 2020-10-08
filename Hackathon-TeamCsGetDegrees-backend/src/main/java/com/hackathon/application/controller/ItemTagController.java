@@ -61,10 +61,7 @@ public class ItemTagController {
 		
 		int level = tags.get(0).getLevel();
 		String precede = tags.get(0).getPrecedingNode();
-		System.out.println("Level to compare to = " + level);
-		System.out.println("Tag NAME");
-		System.out.println(tags.get(0).getTagName());
-		System.out.println("PReceding node of tag entered: " + precede);
+
 		int count1 = 0;
 		int max = tags.size()-1;
 		while (count1 <= max ) {
@@ -72,12 +69,7 @@ public class ItemTagController {
 			for(ItemTag i: itemTags) {
 				if(tag.getTagId()== i.getTagId() && tag.getLevel() >= level && tags.get(count1).getPrecedingNode() == tag.getPrecedingNode()) {
 					foundIds.add(i.getItemId());
-					System.out.println("Name" + tag.getTagName());
-					System.out.println("TagID:  "  + tag.getTagId());
-					System.out.println("Level >>>" + tag.getLevel());
-					System.out.println();
-					System.out.println("Item ID>>>");
-					System.out.println(i.getItemId());
+
 				}
 			}
 		count1++;
@@ -88,19 +80,11 @@ public class ItemTagController {
 			for(Item item: items) {
 				if(item.getItemId() == i) {
 					finalItems.add(item);
-					System.out.println();
-					System.out.println("Item>>>");
-					System.out.println(item.toString());
+					
 				}
 			}
 		}
 		
-		//Adding special Keys 
-		List<String> specialKeys = new ArrayList();
-		specialKeys.add("DicksExclusive");
-		specialKeys.add("ExtendedSized");
-		specialKeys.add("TopSeller");
-		specialKeys.add("NewArrivals");
 		
 		List<Item> reducedItems = new ArrayList();
 		int count = 0;
