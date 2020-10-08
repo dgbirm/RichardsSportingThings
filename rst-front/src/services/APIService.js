@@ -1,30 +1,44 @@
+import tokenservice from "./tokenservice";
 
 URL = "http://localhost:8080";
 
-class APIService  {
+const APIService  ={
 
-    postTags(input){
+    postTagsForTags(input){
         const postOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({tags: input})
+            body: JSON.stringify([input])
         }
         /* Body Example
             {
                 tags: ['sports', 'volleyball', 'balls]
             }
-            Expected return
+        */ 
+       return fetch(URL + '/tags', postOptions)
+            .then(res => res.json())
+            .then (res => {
+                if(res.length !== 0)
+                    tokenservice.saveTags(res);
+            });
+    },
+
+    postTagsForItems(input){
+        const postOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify([input])
+        }
+        /* Body Example
             {
-                tags: [],
-                items: [
-                    {some item and info},
-                    {etc}
-                ]
+                tags: ['sports', 'volleyball', 'balls]
             }
         */ 
-       return fetch(URL, postOptions)
-            .then(res => {
-
+       return fetch(URL + '/tagitems', postOptions)
+            .then(res => res.json())
+            .then (res => {
+                console.log(res);
+                tokenservice.saveItems(res)
             });
     }
 
