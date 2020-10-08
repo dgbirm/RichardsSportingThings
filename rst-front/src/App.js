@@ -36,13 +36,38 @@ class App extends React.Component {
         "precedingnode": 1
       }
     ])
-
+    tokenservice.saveItems([{
+      itemName: 'P-TEX Ankle Brace With Stabilizers',
+      imageUrl:'https://dks.scene7.com/is/image/dkscdn/17PTEUPTXNKLBRCWSSPM_is/?$DSG_ProductCard$',
+      price: '$1000'
+  }, {
+    itemName: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
+      imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
+      price: '$24.99'
+  }, {
+    itemName: 'Wilson Graffiti Outdoor Volleyball',
+      imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
+      price: '$19.99'
+  }, {
+    itemName: 'Tandem Round Volleyball Blocking Pads',
+      imageUrl: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
+      price: '$49.99'
+  }, {
+    itemName: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
+      imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
+      price: '$24.99'
+  }, {
+    itemName: 'Wilson Graffiti Outdoor Volleyball',
+    imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
+      price: '$19.99'
+  }, {
+    itemName: 'Tandem Round Volleyball Blocking Pads',
+      imageUrl: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
+      price: '$49.99'
+  }])
   }
 
   forceRender = () => {
-    let i = [tokenservice.getItems()];
-    i.push({ name: 'new' });
-    tokenservcice.saveItems(i);
     this.setState({ dummy: 'dummy' });
   }
 

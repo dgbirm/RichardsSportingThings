@@ -52,7 +52,7 @@ header input{
 
 .items{
   direction: rtl;
-  min-width: 500px;
+  width: 500px;
   background-color: green;
   text-align: center;
   border-radius: 30px;

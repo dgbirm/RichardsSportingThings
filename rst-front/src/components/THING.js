@@ -41,6 +41,7 @@ class Thing extends React.Component {
     }
 
     generateCoords = () => {
+        this.props.forceRender();
         var mapx = [];
         let tags = tokenservice.getTags();
         const screenx = window.innerWidth - 800;
@@ -49,44 +50,48 @@ class Thing extends React.Component {
             const randx = 150 + Math.random() * screenx;
             const randy = 150 + Math.random() * screeny;
             const rands = 80 + Math.random() * 40;
-            mapx.unshift({ _id: i.toString(), shape: 'circle', coords: [randx, randy, rands], preFillColor: 'blue', title: tags.tagName });
-            while(this.checkCollision(mapx, i)){
+            mapx.unshift({ _id: i.toString(), shape: 'circle', coords: [randx, randy, rands], preFillColor: 'rgb(65, 136, 250)', title: tags[i].tagName });
+            while (this.checkCollision(mapx, 0)) {
                 const randx = 150 + Math.random() * screenx;
                 const randy = 150 + Math.random() * screeny;
                 const rands = 80 + Math.random() * 40;
-                mapx[i].coords = [randx, randy, rands];
+                mapx[0].coords = [randx, randy, rands];
             }
         }
 
-        let x = mapx.length-1;
-        /*for (let i = x; i < 2*x; i++){
-            console.log(i)
-            console.log(mapx);
+        let x = mapx.length - 1;
+        for (let i = x; i < 2*x; i++){
             mapx.unshift({ _id: (i+1).toString(), shape: 'poly', coords: [mapx[x].coords[0], mapx[x].coords[1], mapx[x].coords[0] + 5, mapx[x].coords[1] + 5,
             mapx[x-1].coords[0] + 5, mapx[x-1].coords[1] + 5, mapx[x-1].coords[0], mapx[x-1].coords[1]], preFillColor: 'black' })
-        }*/
-        this.setState({ map: {name: 'logo', areas: mapx} })
+        }
+        this.setState({ map: { name: 'logo', areas: mapx }, start: 0 }, () => {this.props.forceRender()});
     }
 
     onclick = (area) => {
-        /*var tag = area.title;
-        var tagArray = this.state.tagArray;
-        tagArray.push(tag);*/
-
-        /*tokenservice.saveTags(tagArray);
-        APIService.postTagsForItems(tagArray)
-            .then( res => {
-                
-            });*/
+        var clicked = area.title;
+        var tagArray = tokenservice.getTags();
+        console.log(tagArray)
+        let match;
+        tagArray.forEach(tag => {
+            let str = tag.tagName;
+            if (str === clicked)
+                match = tag;
+        })
+        console.log(match)
+        APIService.postTagsForItems(match)
+        .then(() => {
+            APIService.postTagsForTags(match)
+            .then(() => this.generateCoords());
+        });
         //update state?
-        //this.props.forceRender();
+        
         this.generateCoords();
     }
 
     nameRender() {
         let areaDraw = [];
         let mapx = this.state.map.areas;
-        for (let x = 0; x < mapx.length; x++) {
+        for (let x = this.state.start; x < mapx.length; x++) {
             areaDraw.push(mapx[x])
         }
         let x = 0;
@@ -98,17 +103,23 @@ class Thing extends React.Component {
             x++;
             return <div className="name" style={style}>{label.title}</div>
         })
+    }
 
+    test(){
+        return <ImageMapper className="map" src={logo} map={this.state.map} onClick={area => this.onclick(area)} width={window.innerWidth - 520} height={window.innerHeight - 150} alt="alt" />
     }
 
     render() {
-        console.log(this.state.map.areas)
         return <div>
-            <ImageMapper className="map" src={logo} map={this.state.map} onClick={area => this.onclick(area)} width={window.innerWidth - 520} height={window.innerHeight - 150} alt="alt" />
+            {this.test()}
             <div className="text">
                 {this.nameRender()}
             </div>
         </div>
+    }
+
+    componentDidMount(){
+        this.generateCoords();
     }
 
 }

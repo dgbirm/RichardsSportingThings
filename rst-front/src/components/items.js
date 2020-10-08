@@ -13,41 +13,42 @@ class Items extends React.Component{
     constructor (props) {
         super(props);
         this.state = {array: [{
-            name: 'P-TEX Ankle Brace With Stabilizers',
-            imageURL:'https://dks.scene7.com/is/image/dkscdn/17PTEUPTXNKLBRCWSSPM_is/?$DSG_ProductCard$',
+            itemName: 'P-TEX Ankle Brace With Stabilizers',
+            imageUrl:'https://dks.scene7.com/is/image/dkscdn/17PTEUPTXNKLBRCWSSPM_is/?$DSG_ProductCard$',
             price: '$1000'
         }, {
-            name: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
-            imageURL: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
+            itemName: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
+            imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
             price: '$24.99'
         }, {
-            name: 'Wilson Graffiti Outdoor Volleyball',
-            imageURL: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
+            itemName: 'Wilson Graffiti Outdoor Volleyball',
+            imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
             price: '$19.99'
         }, {
-            name: 'Tandem Round Volleyball Blocking Pads',
-            imageURL: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
+            itemName: 'Tandem Round Volleyball Blocking Pads',
+            imageUrl: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
             price: '$49.99'
         }, {
-            name: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
-            imageURL: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
+            itemName: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
+            imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
             price: '$24.99'
         }, {
-            name: 'Wilson Graffiti Outdoor Volleyball',
-            imageURL: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
+            itemName: 'Wilson Graffiti Outdoor Volleyball',
+            imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
             price: '$19.99'
         }, {
-            name: 'Tandem Round Volleyball Blocking Pads',
-            imageURL: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
+            itemName: 'Tandem Round Volleyball Blocking Pads',
+            imageUrl: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
             price: '$49.99'
         }]}
     }
 
     render() {
-        let loopy = this.state.array.map(item => 
-            <Item name={item.name}
+        let x = tokenservice.getItems();
+        let loopy = tokenservice.getItems().map(item => 
+            <Item name={item.itemName}
                 price={item.price}
-                imageURL={item.imageURL}
+                imageURL={item.imageUrl}
             />
         )
         return <div className= "items">
