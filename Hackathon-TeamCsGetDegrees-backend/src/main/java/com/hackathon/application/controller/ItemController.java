@@ -72,13 +72,10 @@ public class ItemController {
 		
 		return new ResponseEntity<List<Tag>>(temp,HttpStatus.ACCEPTED);
 	}
-	
 
 //	@PostMapping("tags")
 //	public ResponseEntity<List<Tag>> createAcc(@RequestBody List<Tag> t) {
 //		
 //	}
-	
-
 
 }
