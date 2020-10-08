@@ -12,8 +12,9 @@ public class Item {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int itemId;
 private String itemName;
-private String description;
+private String imageUrl;
 private double price;
+private String specialKey;
 
 
 
@@ -22,12 +23,13 @@ public Item() {
 }
 
 
-public Item(int itemId, String itemName, String description, double price) {
+public Item(int itemId, String itemName, String imageUrl, double price, String specialKey) {
 	super();
 	this.itemId = itemId;
 	this.itemName = itemName;
-	this.description = description;
+	this.imageUrl = imageUrl;
 	this.price = price;
+	this.specialKey = specialKey;
 }
 
 
@@ -43,12 +45,7 @@ public String getItemName() {
 public void setItemName(String itemName) {
 	this.itemName = itemName;
 }
-public String getDescription() {
-	return description;
-}
-public void setDescription(String description) {
-	this.description = description;
-}
+
 public double getPrice() {
 	return price;
 }
@@ -57,12 +54,31 @@ public void setPrice(double price) {
 }
 
 
-@Override
-public String toString() {
-	return "Item [itemId=" + itemId + ", itemName=" + itemName + ", description=" + description + ", price=" + price
-			+ "]";
+public String getImageUrl() {
+	return imageUrl;
 }
 
+
+public void setImageUrl(String imageUrl) {
+	this.imageUrl = imageUrl;
+}
+
+
+public String getSpecialKey() {
+	return specialKey;
+}
+
+
+public void setSpecialKey(String specialKey) {
+	this.specialKey = specialKey;
+}
+
+
+@Override
+public String toString() {
+	return "Item [itemId=" + itemId + ", itemName=" + itemName + ", imageUrl=" + imageUrl + ", price=" + price
+			+ ", specialKey=" + specialKey + "]";
+}
 
 }
 
