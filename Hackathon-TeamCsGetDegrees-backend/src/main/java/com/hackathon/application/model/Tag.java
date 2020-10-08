@@ -13,19 +13,26 @@ public class Tag {
 private int tagId;
 private String tagName;
 private int isFinal;
-
+private int level;
+private String precedingNode;
 
 
 public Tag() {
 	super();
 }
 
-public Tag(int tagId, String tagName, int isFinal) {
+
+
+public Tag(int tagId, String tagName, int isFinal, int level, String precedingNode) {
 	super();
 	this.tagId = tagId;
 	this.tagName = tagName;
 	this.isFinal = isFinal;
+	this.level = level;
+	this.precedingNode = precedingNode;
 }
+
+
 
 public int getTagId() {
 	return tagId;
@@ -51,10 +58,31 @@ public void setIsFinal(int isFinal) {
 	this.isFinal = isFinal;
 }
 
+
+public int getLevel() {
+	return level;
+}
+
+public void setLevel(int level) {
+	this.level = level;
+}
+
+public String getPrecedingNode() {
+	return precedingNode;
+}
+
+public void setPrecedingNode(String precedingNode) {
+	this.precedingNode = precedingNode;
+}
+
+
+
 @Override
 public String toString() {
-	return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", isFinal=" + isFinal + "]";
+	return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", isFinal=" + isFinal + ", level=" + level
+			+ ", precedingNode=" + precedingNode + "]";
 }
+
 
 
 
