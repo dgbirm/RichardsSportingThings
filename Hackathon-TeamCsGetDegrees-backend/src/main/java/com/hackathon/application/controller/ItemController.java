@@ -28,7 +28,7 @@ public class ItemController {
 	@Autowired
 	private TagService tg;
 	
-	private HashMap<Integer, ArrayList<Tag>> tagMappings = new HashMap<Integer, ArrayList<Tag>>();
+	private HashMap<String, ArrayList<Tag>> tagMappings = new HashMap<String, ArrayList<Tag>>();
 	
 	@PostMapping("tags")
 	public ResponseEntity<List<Tag>> createAcc(@RequestBody List<Tag> t) {
@@ -50,11 +50,11 @@ public class ItemController {
 		eight.add(tg.findById(14));
 		
 		for(int i =0;i<tg.findAll().size();i++) {
-			tagMappings.put(i,new ArrayList<Tag>());
+			tagMappings.put(tg.findAll().get(i).getTagName(),new ArrayList<Tag>());
 		}
-		tagMappings.put(1, one);
-		tagMappings.put(4, four);
-		tagMappings.put(8, eight);
+//		tagMappings.put(1, one);
+//		tagMappings.put(4, four);
+//		tagMappings.put(8, eight);
 		
 //		System.out.println(tg.findAll());
 //		for (Map.Entry<Integer,ArrayList<Tag>> entry : tagMappings.entrySet())  

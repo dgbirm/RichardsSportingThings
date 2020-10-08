@@ -12,4 +12,5 @@ public interface TagService {
 	public void addTag(Tag t);
 	public List<Tag> findAll();
 	public Tag findById(int id);
+	public Tag findByName(String name);
 }

@@ -36,4 +36,15 @@ public class TagServiceImplementation implements TagService {
 		
 	}
 
+	@Override
+	public Tag findByName(String name) {
+		List<Tag> all = tagRepo.findAll();;
+		for(int i=0;i<all.size();i++) {
+			if(all.get(i).getTagName().equalsIgnoreCase(name)) {
+				return all.get(i);
+			}
+		}
+		return null;
+	}
+
 }
