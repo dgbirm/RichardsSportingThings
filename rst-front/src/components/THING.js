@@ -1,6 +1,7 @@
 import React from "react";
 import ImageMapper from 'react-image-mapper';
-
+import tokenservice from '../services/tokenservice';
+import APIService from '../services/APIService';
 import logo from '../blank.png';
 
 class Thing extends React.Component {
@@ -17,10 +18,10 @@ class Thing extends React.Component {
                     { _id: 'three', shape: 'circle', coords: [500, 100, 100], preFillColor: 'pink', title: 'balls' },
                     { _id: 'four', shape: 'circle', coords: [500, 500, 100], preFillColor: 'orange', title: 'nets' },
                 ]
-            }
+            },
+            tagArray: []
         }
     }
-    //use use image height and width
 
     checkCollision(mapx, int) {
         for (var i = 3; i < 7; i++) {
@@ -61,8 +62,18 @@ class Thing extends React.Component {
         this.setState({ map: mapx })
     }
 
-    onclick = () => {
+    onclick = (area) => {
+        var tag = area.title;
+        var tagArray = this.state.tagArray;
+        tagArray.push(tag);
 
+        /*tokenservice.saveTags(tagArray);
+        APIService.postTagsForItems(tagArray)
+            .then( res => {
+                
+            });*/
+        //update state?
+        this.props.forceRender();
         this.generateCoords();
     }
 
@@ -84,7 +95,7 @@ class Thing extends React.Component {
             left: this.state.map.areas[6].coords[0] - 50
         }
         return <div>
-            <ImageMapper className="map" src={logo} map={this.state.map} onClick={() => { this.onclick() }} width={window.innerWidth - 400} height={window.innerHeight - 155} alt = "alt"/>
+            <ImageMapper className="map" src={logo} map={this.state.map} onClick={area => this.onclick(area) } width={window.innerWidth - 400} height={window.innerHeight - 155} alt = "alt"/>
             <div className="text">
                <div className="name" style = {style1}>{this.state.map.areas[3].title}</div>
                <div className="name" style = {style2}>{this.state.map.areas[4].title}</div>
