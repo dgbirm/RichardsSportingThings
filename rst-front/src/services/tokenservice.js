@@ -3,19 +3,19 @@
 const tokenservice = {
 
     saveTags(tags){
-        window.localStorage.setItem('tags', tags);
+        window.localStorage.setItem('tags', JSON.stringify(tags));
     },
     getTags(){
-        return window.localStorage.getItem('tags');
+        return JSON.parse(window.localStorage.getItem('tags'));
     },
     clearTags(){
         window.localStorage.removeItem('tags');
     },
     saveItems(items){
-        window.localStorage.setItem('items', items);
+        window.localStorage.setItem('items', JSON.stringify(items));
     },
     getItems(){
-        return window.localStorage.getItem('items');
+        return JSON.parse(window.localStorage.getItem('items'));
     },
     clearItems(){
         window.localStorage.removeItem('items');

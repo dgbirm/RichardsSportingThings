@@ -9,7 +9,7 @@ class Header extends React.Component {
         e.preventDefault();
         let form = document.getElementById("search").value;
         console.log(form);
-        let tags = [...tokenservice.getTags()];
+        let tags = [tokenservice.getTags()];
         tags.push(form);
         tokenservice.saveTags(tags);
 

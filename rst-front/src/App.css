@@ -1,6 +1,6 @@
 header {
   display: flex;
-  background-color: chartreuse;
+  background-color: green;
   height: 100px;
 }
 header h1{
@@ -16,13 +16,14 @@ header input{
 
 .body{
   display: flex;
-}
-.items {
-  min-width: 500px;
-  background-color: coral;
+  background-color: lightslategray;
 }
 
 .temp{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
   background-color: cornflowerblue;
   font-size: 40px;
   max-height: 200px;
@@ -48,3 +49,51 @@ header input{
   left: 500px;
   z-index: 0;
 }
+
+.items{
+  direction: rtl;
+  min-width: 500px;
+  background-color: green;
+  text-align: center;
+  border-radius: 30px;
+  margin:5px;
+  border: solid 5px black;
+
+  overflow:auto;
+  height: 840px;
+}
+
+.items::-webkit-scrollbar{
+  height: 250px;
+  max-height: 250px;
+  background: rgba(100, 100, 100, .5);
+  border-radius: 10px;
+  width: 15px;
+}
+.items::-webkit-scrollbar-track{
+  height: 250px;
+  max-height: 250px;
+  background: rgba(100, 100, 100, .5);;
+  border-radius: 10px;
+  /*border: solid 4px darkgreen;*/
+}
+.items::-webkit-scrollbar-thumb{
+  background: rgba(151, 151, 151, .9);
+  border-radius: 10px;
+  width: 10px;
+}
+
+.item{
+  background-color: white;
+  margin: 20px;
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 20px;
+  border: 2px black solid;
+  display: flex;
+}
+
+.item img{
+float: right;
+}
+

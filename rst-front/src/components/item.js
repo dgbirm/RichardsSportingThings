@@ -6,14 +6,14 @@ class Item extends React.Component {
     price;
     imageURL;
 
-    render () { 
-        return <div className='item'> 
-            <h4>{this.props.name}</h4>
-            <p><img src={this.props.imageURL} height='100px' />
-            {this.props.price}
-            </p>
-            <hr />
-        </div>
+    render() {
+        return <button className='item'>
+            <div>
+                <h4>{this.props.name}</h4>
+                {this.props.price}
+            </div>
+            <img src={this.props.imageURL} height='150px' />
+        </button>
     }
 }
 

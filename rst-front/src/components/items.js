@@ -28,6 +28,18 @@ class Items extends React.Component{
             name: 'Tandem Round Volleyball Blocking Pads',
             imageURL: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
             price: '$49.99'
+        }, {
+            name: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
+            imageURL: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
+            price: '$24.99'
+        }, {
+            name: 'Wilson Graffiti Outdoor Volleyball',
+            imageURL: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
+            price: '$19.99'
+        }, {
+            name: 'Tandem Round Volleyball Blocking Pads',
+            imageURL: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
+            price: '$49.99'
         }]}
     }
 
@@ -39,7 +51,7 @@ class Items extends React.Component{
             />
         )
         return <div className= "items">
-            <h1>Our top Items!</h1> {
+            <h1>Our top Items</h1> {
                 loopy
             }
         </div>
