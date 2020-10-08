@@ -59,10 +59,19 @@ public class ItemTagController {
 		List <Item> items = itemservice.findAll();
 		List <ItemTag> itemTags = service.findAll();
 		
+		int level = tags.get(0).getLevel();
+		String precede = tags.get(0).getPrecedingNode();
+		System.out.println("Level to compare to = " + level);
+		System.out.println("Tag NAME");
+		System.out.println(tags.get(0).getTagName());
+		System.out.println("PReceding node of tag entered: " + precede);
 		for(Tag tag: tags) {
-			for(ItemTag i: itemTags ) {
-				if(tag.getTagId()== i.getTagId()) {
+			for(ItemTag i: itemTags) {
+				if(tag.getTagId()== i.getTagId() && tag.getLevel() >= level && tags.get(0).getPrecedingNode() == tag.getPrecedingNode()) {
 					foundIds.add(i.getItemId());
+					System.out.println("Name" + tag.getTagName());
+					System.out.println("TagID:  "  + tag.getTagId());
+					System.out.println("Level >>>" + tag.getLevel());
 					System.out.println();
 					System.out.println("Item ID>>>");
 					System.out.println(i.getItemId());
