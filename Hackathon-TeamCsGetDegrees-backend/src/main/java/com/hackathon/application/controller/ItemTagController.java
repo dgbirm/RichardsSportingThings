@@ -19,6 +19,7 @@ import com.hackathon.application.model.ItemTag;
 import com.hackathon.application.model.Tag;
 import com.hackathon.application.service.ItemService;
 import com.hackathon.application.service.ItemTagService;
+import com.hackathon.application.service.TagService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -27,8 +28,27 @@ public class ItemTagController {
 	
 	@Autowired
 	private ItemTagService service;
+	@Autowired
 	private ItemService itemservice;
 	
+	@Autowired
+	private TagService tagservice;
+	
+	@GetMapping("/allTags")
+	public List<Tag> getTags(){
+		List <Tag> tags = tagservice.findAll();
+
+		return tags;
+		
+	}
+	
+	@GetMapping("/items")
+	public List<Item> getItems(){
+		List <Item> items = itemservice.findAll();
+
+		return items;
+		
+	}
 	
 
 	@PostMapping("/tagitems")
@@ -39,26 +59,72 @@ public class ItemTagController {
 		List <Item> items = itemservice.findAll();
 		List <ItemTag> itemTags = service.findAll();
 		
+		int level = tags.get(0).getLevel();
+		String precede = tags.get(0).getPrecedingNode();
+		System.out.println("Level to compare to = " + level);
+		System.out.println("Tag NAME");
+		System.out.println(tags.get(0).getTagName());
+		System.out.println("PReceding node of tag entered: " + precede);
 		for(Tag tag: tags) {
-			for(ItemTag i: itemTags ) {
-				if(tag.getTagId()== i.getTagId()) {
+			for(ItemTag i: itemTags) {
+				if(tag.getTagId()== i.getTagId() && tag.getLevel() >= level && tags.get(0).getPrecedingNode() == tag.getPrecedingNode()) {
 					foundIds.add(i.getItemId());
+					System.out.println("Name" + tag.getTagName());
+					System.out.println("TagID:  "  + tag.getTagId());
+					System.out.println("Level >>>" + tag.getLevel());
+					System.out.println();
+					System.out.println("Item ID>>>");
+					System.out.println(i.getItemId());
 				}
 			}
 		}
-		
+		System.out.println("");
 		for(int i: foundIds) {
 			for(Item item: items) {
 				if(item.getItemId() == i) {
 					finalItems.add(item);
+					System.out.println();
+					System.out.println("Item>>>");
+					System.out.println(item.toString());
 				}
 			}
 		}
 		
+		//Adding special Keys 
+		List<String> specialKeys = new ArrayList();
+		specialKeys.add("DicksExclusive");
+		specialKeys.add("ExtendedSized");
+		specialKeys.add("TopSeller");
+		specialKeys.add("NewArrivals");
 		
+		List<Item> reducedItems = new ArrayList();
+		int count = 0;
+		for(Item i: finalItems) {
+			if(count <= 3) {
+				if(specialKeys.contains(i.getSpecialKey())) {
+					reducedItems.add(i);
+				}
+			}
+		
+		count++;
+		}
+		
+		if(reducedItems.size() == 3) {
+			return reducedItems;
+		}
+		else {
+			
+			if(finalItems.size()>= 4) {
+				return finalItems.subList(0, 3);
+			}
+			
+		}
+		
+		return new ArrayList<Item>();
 	
 
-		return finalItems;
+
+		
 		
 	}
 
