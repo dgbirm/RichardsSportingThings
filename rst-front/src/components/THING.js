@@ -3,11 +3,6 @@ import ImageMapper from 'react-image-mapper';
 import tokenservice from '../services/tokenservice';
 import APIService from '../services/APIService';
 import logo from '../blank.png';
-import soccer from '../images/soccer.jpg';
-import beach from '../images/beach.jpeg';
-import shirt from '../images/shirts.webp';
-import volley from '../images/volley.jpg';
-import shoe from '../images/shoe.jpg';
 
 
 

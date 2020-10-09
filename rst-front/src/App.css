@@ -68,7 +68,7 @@ header input{
 .items{
   direction: rtl;
   width: 500px;
-  background-color:  #63c132;
+  background-color:  #9ee37d;
   color: #393d3f;
   font-size: 25px;
   text-align: center;
@@ -78,6 +78,7 @@ header input{
   text-decoration: underline;
   overflow:auto;
   height: 840px;
+  box-shadow: 5px 10px 10px #393d3f;
 }
 
 .items::-webkit-scrollbar{
@@ -100,7 +101,7 @@ header input{
 }
 
 .item{
-  background-color: #9ee37d;
+  background-color: #acc5d6;
   color: #393d3f;
   margin: 20px;
   padding: 20px;
@@ -108,46 +109,48 @@ header input{
   border-radius: 20px;
   border: 2px black solid;
   display: flex;
+  box-shadow: 5px 10px 10px #393d3f;
 }
 
 .item img{
 float: right;
 border-radius: 30px;
+box-shadow: 1px 1px 3px #393d3f;
 }
 
 .soccer{
-  background-image: linear-gradient(rgb(0, 0, 0),rgb(0, 0, 0)),url("./images/soccer.jpg");
+  background-image: linear-gradient(#91a3b0,#91a3b0),url("./images/soccer.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-blend-mode: saturation;
+  background-blend-mode: color;
 }
 
 .volley{
-  background-image: linear-gradient(rgb(0, 0, 0),rgb(0, 0, 0)), url("./images/volley.jpg");
+  background-image: linear-gradient(#91a3b0,#91a3b0), url("./images/volley.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-blend-mode: saturation;
+  background-blend-mode: color;
 }
 
 .shoe{
-  background-image: linear-gradient(rgb(0, 0, 0),rgb(0, 0, 0)), url("./images/shoe.jpg");
+  background-image: linear-gradient(#91a3b0,#91a3b0), url("./images/shoe.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-blend-mode: saturation;
+  background-blend-mode: color;
 }
 
 .beach{
-  background-image: linear-gradient(rgb(0, 0, 0),rgb(0, 0, 0)), url("./images/beach.jpeg");
+  background-image: linear-gradient(#91a3b0,#91a3b0), url("./images/beach.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-blend-mode: saturation;
+  background-blend-mode: color;
 }
 
 .shirt{
-  background-image: linear-gradient(rgb(0, 0, 0),rgb(0, 0, 0)), url("./images/shirts.jpg");
+  background-image: linear-gradient(#91a3b0,#91a3b0), url("./images/shirts.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-blend-mode: saturation;
+  background-blend-mode: color;
 }
 
 .logo{
@@ -195,3 +198,32 @@ form{
 }
 
 
+.newName{
+  z-index: 12;
+  position: absolute;
+  background-color: #9ee37d;
+  color: #393d3f;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 10px 10px 15px #393d3f;
+  filter: grayscale(0%);
+  font-size: 25px;
+  font-weight: bold;
+  color: #393d3f;
+  text-decoration: underline;
+  outline:none;
+}
+.newName p{
+  /*text-align: center;*/
+  filter: grayscale(0%);
+  position: relative;
+  bottom: -20%;
+  font-size: 25px;
+  font-weight: bold;
+  color: #393d3f;
+  text-decoration: underline;
+}
+.newName:hover{
+  filter: grayscale(50%);
+  box-shadow: 10px 10px 5px #393d3f;
+}
