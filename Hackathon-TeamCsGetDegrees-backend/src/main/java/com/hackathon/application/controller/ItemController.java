@@ -33,7 +33,7 @@ public class ItemController {
 	@PostMapping("tags")
 	public List<Tag> createAcc(@RequestBody List<Tag> t) {
 		for(int i =0;i<tg.findAll().size();i++) {
-			tagMappings.put(tg.findAll().get(i).getTagName(),new ArrayList<Tag>());
+			tagMappings.put(tg.findAll().get(i).getTagName().toUpperCase(),new ArrayList<Tag>());
 		}
 		
 		ArrayList<Tag> hasMaps = new ArrayList<Tag>();
@@ -56,7 +56,7 @@ public class ItemController {
 			}
 			else {
 				//System.out.println(hasMaps.get(j).getPrecedingNode());
-				tagMappings.get(hasMaps.get(j).getPrecedingNode()).add(hasMaps.get(j));
+				tagMappings.get(hasMaps.get(j).getPrecedingNode().toUpperCase()).add(hasMaps.get(j));
 			}
 		}
 		
@@ -64,10 +64,32 @@ public class ItemController {
 //            System.out.println("Key = " + entry.getKey() + 
 //                             ", Value = " + entry.getValue()); 
 		
+		ArrayList<Tag> temp = new ArrayList<Tag>();
+		if(t.size()<1) { //no tag entered/received
+			for(int i=0;i<tg.findAll().size();i++) {
+				if(tg.findAll().get(i).getLevel()==1) {
+					temp.add(tg.findAll().get(i));
+				}
+			}
+		}
+		else {
+			Tag recentTag = t.get(t.size()-1);
+			String tname = recentTag.getTagName().toUpperCase();
+			
+			if(tagMappings.containsKey(tname)) {
+				temp = tagMappings.get(tname);
+			}
+			else {
+				for(int i=0;i<tg.findAll().size();i++) {
+					if(tg.findAll().get(i).getLevel()==1) {
+						temp.add(tg.findAll().get(i));
+					}
+				}
+			}
+		}
 		
-		Tag recentTag = t.get(t.size()-1);
-		ArrayList<Tag> temp = tagMappings.get(recentTag.getTagName());
 		return temp;
+		
 	}
 	
 }
