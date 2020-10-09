@@ -28,43 +28,46 @@ public class ItemController {
 	@Autowired
 	private TagService tg;
 	
-	private HashMap<Integer, ArrayList<Tag>> tagMappings = new HashMap<Integer, ArrayList<Tag>>();
+	private HashMap<String, ArrayList<Tag>> tagMappings = new HashMap<String, ArrayList<Tag>>();
 	
 	@PostMapping("tags")
-	public ResponseEntity<List<Tag>> createAcc(@RequestBody List<Tag> t) {
-		ArrayList<Tag> one = new ArrayList<Tag>();
-		one.add(tg.findById(4));
-		one.add(tg.findById(5));
-		one.add(tg.findById(6));
-		
-		ArrayList<Tag> four = new ArrayList<Tag>();
-		four.add(tg.findById(7));
-		four.add(tg.findById(8));
-		
-		ArrayList<Tag> eight = new ArrayList<Tag>();
-		eight.add(tg.findById(9));
-		eight.add(tg.findById(10));
-		eight.add(tg.findById(11));
-		eight.add(tg.findById(12));
-		eight.add(tg.findById(13));
-		eight.add(tg.findById(14));
-		
+	public List<Tag> createAcc(@RequestBody List<Tag> t) {
 		for(int i =0;i<tg.findAll().size();i++) {
-			tagMappings.put(i,new ArrayList<Tag>());
+			tagMappings.put(tg.findAll().get(i).getTagName(),new ArrayList<Tag>());
 		}
-		tagMappings.put(1, one);
-		tagMappings.put(4, four);
-		tagMappings.put(8, eight);
 		
+		ArrayList<Tag> hasMaps = new ArrayList<Tag>();
+		for(int i =0;i<tg.findAll().size();i++) {
+			if(tg.findAll().get(i).getLevel()!= 0){// && tg.findAll().get(i).getIsFinal() !=1) {
+				hasMaps.add(tg.findAll().get(i));
+			}
+		
+		}
+//		for (Map.Entry<String,ArrayList<Tag>> entry : tagMappings.entrySet())  
+//            System.out.println("Key = " + entry.getKey() + 
+//                             ", Value = " + entry.getValue()); 
+//		
+//		System.out.println(hasMaps);
 //		System.out.println(tg.findAll());
-//		for (Map.Entry<Integer,ArrayList<Tag>> entry : tagMappings.entrySet())  
+		
+		for(int j=0;j<hasMaps.size();j++) {
+			if(hasMaps.get(j).getPrecedingNode()==null) {
+				//System.out.println("null prec node");
+			}
+			else {
+				//System.out.println(hasMaps.get(j).getPrecedingNode());
+				tagMappings.get(hasMaps.get(j).getPrecedingNode()).add(hasMaps.get(j));
+			}
+		}
+		
+//		for (Map.Entry<String,ArrayList<Tag>> entry : tagMappings.entrySet())  
 //            System.out.println("Key = " + entry.getKey() + 
 //                             ", Value = " + entry.getValue()); 
 		
-		Tag recentTag = t.get(t.size()-1);
-		ArrayList<Tag> temp = tagMappings.get(recentTag.getTagId());
 		
-		return new ResponseEntity<List<Tag>>(temp,HttpStatus.ACCEPTED);
+		Tag recentTag = t.get(t.size()-1);
+		ArrayList<Tag> temp = tagMappings.get(recentTag.getTagName());
+		return temp;
 	}
 	
 }
