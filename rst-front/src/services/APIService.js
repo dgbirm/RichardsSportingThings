@@ -2,9 +2,9 @@ import tokenservice from "./tokenservice";
 
 URL = "http://localhost:8080";
 
-const APIService  ={
+const APIService = {
 
-    postTagsForTags(input){
+    postTagsForTags(input) {
         const postOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -14,17 +14,20 @@ const APIService  ={
             {
                 tags: ['sports', 'volleyball', 'balls]
             }
-        */ 
-       return fetch(URL + '/tags', postOptions)
+        */
+        return fetch(URL + '/tags', postOptions)
             .then(res => res.json())
-            .then (res => {
+            .then(res => {
                 //save it so the tag you clicked stays
-                if(res.length !== 0)
+                if (res.length !== 0) {
+                    res.unshift(input);
                     tokenservice.saveTags(res);
+                }
+
             });
     },
 
-    postTagsForItems(input){
+    postTagsForItems(input) {
         const postOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -34,11 +37,12 @@ const APIService  ={
             {
                 tags: ['sports', 'volleyball', 'balls]
             }
-        */ 
-       return fetch(URL + '/tagitems', postOptions)
+        */
+        return fetch(URL + '/tagitems', postOptions)
             .then(res => res.json())
-            .then (res => {
-                tokenservice.saveItems(res)
+            .then(res => {
+                if (res.length !== 0)
+                    tokenservice.saveItems(res)
             });
     }
 

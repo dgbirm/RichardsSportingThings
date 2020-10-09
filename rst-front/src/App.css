@@ -121,7 +121,7 @@ float: right;
 }
 
 .shirt{
-  background-image: url("./images/shirts.webp");
+  background-image: url("./images/shirts.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }

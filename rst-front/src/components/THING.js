@@ -67,12 +67,14 @@ class Thing extends React.Component {
 
         //make the lines come from a single ball
         let x = mapx.length - 1;
-        for (let i = x; i < 2 * x; i++) {
+        let y=x-1;
+        for (let i = x; i <= x+y; i++) {
             mapx.unshift({
-                _id: (i + 1).toString(), shape: 'poly', coords: [mapx[x].coords[0], mapx[x].coords[1], mapx[x].coords[0] + 5, mapx[x].coords[1] + 5,
-                mapx[x - 1].coords[0] + 5, mapx[x - 1].coords[1] + 5, mapx[x - 1].coords[0], mapx[x - 1].coords[1]], preFillColor: 'grey'
+                _id: (i + 1).toString(), shape: 'poly', coords: [mapx[y].coords[0], mapx[y].coords[1], mapx[y].coords[0] + 5, mapx[y].coords[1] + 5,
+                mapx[i].coords[0] + 5, mapx[i].coords[1] + 5, mapx[i].coords[0], mapx[i].coords[1]], preFillColor: 'grey'
             })
         }
+        console.log(mapx)
         this.setState({ map: { name: 'logo', areas: mapx }, start: 0 }, () => { this.props.forceRender() });
     }
 
