@@ -5,6 +5,7 @@ import Items from './components/items';
 import tokenservcice from './services/tokenservice';
 import './App.css';
 import tokenservice from './services/tokenservice';
+import New from './components/new';
 
 
 
@@ -97,7 +98,8 @@ class App extends React.Component {
         <div className={x} >
           <Items />
           <div>
-            <Thing forceRender={this.forceRender} />
+            <New forceRender={this.forceRender}/>
+            
             <section className="temp"><p>©Richards Sporting Things 2069</p></section>
           </div>
         </div>
@@ -107,3 +109,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+//<Thing forceRender={this.forceRender} />

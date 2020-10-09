@@ -12,6 +12,7 @@ class Header extends React.Component {
         let x = { tagName: form };
         APIService.postTagsForTags(x)
         .then(() => {
+            this.props.forceRender()
             APIService.postTagsForItems(x)
                 .then(() => this.props.forceRender());
         });

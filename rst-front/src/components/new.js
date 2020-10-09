@@ -1,0 +1,102 @@
+import React from "react";
+import ImageMapper from 'react-image-mapper';
+import tokenservice from '../services/tokenservice';
+import APIService from '../services/APIService';
+import logo from '../blank.png';
+
+class New extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+    checkCollision(mapx, int) {
+        for (var i = 0; i < mapx.length; i++) {
+            console.log('' + i + '   ' + int)
+            if (i !== int) {
+                var a = mapx[i].coords[0];
+                var b = mapx[i].coords[1];
+                var c = mapx[i].coords[2];
+                var x = mapx[int].coords[0] - a;
+                var y = mapx[int].coords[1] - b;
+                var r = mapx[int].coords[2] + c;
+                if (Math.sqrt(x * x + y * y) < r+ 30) {
+                    console.log('aaaa')
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    onClick = (name) => {
+        name.preventDefault();
+        let tag = name.target.value;
+        var tagArray = tokenservice.getTags();
+        let match;
+        tagArray.forEach(tg => {
+            let str = tg.tagName;
+            if (str === tag)
+                match = tg;
+        });
+        APIService.postTagsForTags(match)
+            .then(() => {
+                this.props.forceRender();
+                APIService.postTagsForItems(match)
+                    .then(() => this.props.forceRender())
+            });
+    }
+
+    draw() {
+        var mapx = [];
+        let tags = tokenservice.getTags();
+        const screenx = window.innerWidth / 2;
+        const screeny = window.innerHeight - 500;
+        let z = tags.length;
+        for (let i = 0; i < z; i++) {
+            const randx = 550 + Math.random() * screenx;
+            const randy = 150 + Math.random() * screeny;
+            const rands = 100 + Math.random() * 20;
+            mapx.push({ coords: [randx, randy, rands], title: tags[i].tagName });
+            while (this.checkCollision(mapx, i)) {
+                const randx = 550 + Math.random() * screenx;
+                const randy = 150 + Math.random() * screeny;
+                const rands = 80 + Math.random() * 40;
+                mapx[i].coords = [randx, randy, rands];
+            }
+        }
+        let mapy = { name: 'lines', areas: [] };
+        let x = mapx.map(i => {
+            let style = {
+                width: 2 * i.coords[2],
+                height: 2 * i.coords[2],
+                top: i.coords[1],
+                left: i.coords[0],
+            }
+            mapy.areas.push({
+                _id: mapy.areas.length.toString(),
+                shape: 'poly',
+                coords: [i.coords[0] - 450, i.coords[1], i.coords[0] - 450, i.coords[1], mapx[0].coords[0] - 450, mapx[0].coords[1], mapx[0].coords[0] - 450, mapx[0].coords[1]],
+                preFillColor: 'black'
+            })
+            return <button style={style} onClick={this.onClick} className="newName " value={i.title}>{i.title}</button>
+        })
+
+        let ret = <div>
+            <ImageMapper className="map" src={logo} map={mapy} width={window.innerWidth - 520} height={window.innerHeight - 150} alt="alt" />
+            {x}
+        </div>
+        return ret;
+    }
+
+    render() {
+
+        return <div >
+            {this.draw()}
+        </div>
+    }
+
+
+}
+
+export default New;
