@@ -52,7 +52,11 @@ class Thing extends React.Component {
         let tags = tokenservice.getTags();
         const screenx = window.innerWidth/2 ;
         const screeny = window.innerHeight - 500;
-        for (let i = 0; i < tags.length; i++) {
+        let z = tags.length;
+        if (z> 5){
+            z = 5;
+        }
+        for (let i = 0; i < z; i++) {
             const randx = 150 + Math.random() * screenx;
             const randy = 150 + Math.random() * screeny;
             const rands = 80 + Math.random() * 40;
