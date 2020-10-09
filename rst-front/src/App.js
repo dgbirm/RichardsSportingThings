@@ -24,16 +24,16 @@ class App extends React.Component {
         "precedingnode": null
       }, {
         "tagId": 26,
-        "tagName": "Outdoor & Rectreation",
+        "tagName": "Outdoor & Recreation",
         "isFinal": 0,
         "level": 1,
         "precedingnode": null
       }, {
         "tagId": 25,
-        "tagName": "Exercise & Wellness",
+        "tagName": "Exercise & Wellness ",
         "isFinal": 0,
         "level": 1,
-        "precedingnode": 1
+        "precedingnode": null
       }
     ])
     tokenservice.saveItems([{
@@ -93,12 +93,12 @@ class App extends React.Component {
     let x = this.background();
     return (
       <div className="App">
-        <Header />
+        <Header  forceRender={this.forceRender}/>
         <div className={x} >
           <Items />
           <div>
             <Thing forceRender={this.forceRender} />
-            <section className="temp">Temporary thing</section>
+            <section className="temp"><p>©Richards Sporting Things 2069</p></section>
           </div>
         </div>
       </div>
