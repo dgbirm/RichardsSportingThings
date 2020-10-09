@@ -15,8 +15,8 @@ header input{
 }
 
 .body{
+  background-color: rgba(255, 255, 255, 0.7);
   display: flex;
-  background-color: lightslategray;
 }
 
 .temp{
@@ -66,7 +66,7 @@ header input{
 .items::-webkit-scrollbar{
   height: 250px;
   max-height: 250px;
-  background: rgba(100, 100, 100, .5);
+  background: rgba(145, 144, 144, 0.5);
   border-radius: 10px;
   width: 15px;
 }
@@ -75,7 +75,6 @@ header input{
   max-height: 250px;
   background: rgba(100, 100, 100, .5);;
   border-radius: 10px;
-  /*border: solid 4px darkgreen;*/
 }
 .items::-webkit-scrollbar-thumb{
   background: rgba(151, 151, 151, .9);
@@ -96,4 +95,35 @@ header input{
 .item img{
 float: right;
 }
+
+.soccer{
+  background-image: url("./images/soccer.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.volley{
+  background-image: url("./images/volley.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.shoe{
+  background-image: url("./images/shoe.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.beach{
+  background-image: url("./images/beach.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.shirt{
+  background-image: url("./images/shirts.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 

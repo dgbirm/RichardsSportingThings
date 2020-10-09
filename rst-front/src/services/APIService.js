@@ -18,6 +18,7 @@ const APIService  ={
        return fetch(URL + '/tags', postOptions)
             .then(res => res.json())
             .then (res => {
+                //save it so the tag you clicked stays
                 if(res.length !== 0)
                     tokenservice.saveTags(res);
             });
@@ -37,7 +38,6 @@ const APIService  ={
        return fetch(URL + '/tagitems', postOptions)
             .then(res => res.json())
             .then (res => {
-                console.log(res);
                 tokenservice.saveItems(res)
             });
     }

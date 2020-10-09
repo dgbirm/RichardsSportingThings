@@ -50,7 +50,7 @@ public class ItemTagController {
 		
 	}
 	
-
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/tagitems")
 	public List<Item> getTagItems(@RequestBody List<Tag> tags) {
 		

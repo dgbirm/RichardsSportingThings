@@ -72,12 +72,29 @@ class App extends React.Component {
   }
 
 
+  background(){
+    let x = tokenservice.getTags()[0].tagName;
+        switch (x) {
+            case 'Sports':
+                return  ('soccer body');
+            case 'Volleyball':
+              return  ('volley body');
+            case 'Outdoor/Beach':
+              console.log('beach')
+              return  ('beach body');
+            case 'Clothes':
+              return  ('shirt body');
+            default:
+              return  ('shoe body');
+        }
+  }
 
   render() {
+    let x = this.background();
     return (
       <div className="App">
         <Header />
-        <div className="body">
+        <div className={x} >
           <Items />
           <div>
             <Thing forceRender={this.forceRender} />
