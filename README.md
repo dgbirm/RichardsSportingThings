@@ -13,8 +13,9 @@ keywords:
 
 Richard's Sporting Things
 ---------------
-
+![Example Image][workingExample]
 ## Introduction
+
 We have designed a full stack web application ux for a hypothetical Sports Retailer named Richard's Sporting Things. This application is built on the following components: 
   - Spring boot (Java) backend utilizing hibernate and JPA for data persistance
   - Management of MySQL database that supports a many-to-many relationship between:
@@ -71,6 +72,10 @@ By default, the web application should run on `http://localhost:3000`. *Note:* i
 ## Still Under Construction
 
 * ### Animated transitions
+We hope to implement some sort of dynamic transition on a 'button click within the ui
+
+* ### Machine Learning
+We would like to use a machine learning clustering algorithm to generate tag groupings between objects in the data base at some point. So far, we have experimented with...
 
 * ### Frontend integration with spring integration
 At some point, I would like to integrate the front and back ends so that starting the application launches both. For example, I might have to semi-link the front end `index.html` to the location where spring expects it on the back end.
@@ -83,3 +88,4 @@ At some point, I would like to integrate the front and back ends so that startin
 [react-bootstrap]: https://react-bootstrap.github.io/
 [ghclone]: https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository
 [SpT4]: https://marketplace.eclipse.org/content/spring-tools-4-aka-spring-tool-suite-4
+[workingExample]: ./exampleImage.jpg
