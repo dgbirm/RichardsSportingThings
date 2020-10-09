@@ -3,6 +3,12 @@ import ImageMapper from 'react-image-mapper';
 import tokenservice from '../services/tokenservice';
 import APIService from '../services/APIService';
 import logo from '../blank.png';
+import soccer from '../images/soccer.jpg';
+import beach from '../images/beach.jpeg';
+import shirt from '../images/shirts.webp';
+import volley from '../images/volley.jpg';
+import shoe from '../images/shoe.jpg';
+
 
 
 class Thing extends React.Component {
@@ -50,7 +56,7 @@ class Thing extends React.Component {
             const randx = 150 + Math.random() * screenx;
             const randy = 150 + Math.random() * screeny;
             const rands = 80 + Math.random() * 40;
-            mapx.unshift({ _id: i.toString(), shape: 'circle', coords: [randx, randy, rands], preFillColor: 'rgb(65, 136, 250)', title: tags[i].tagName });
+            mapx.unshift({ _id: i.toString(), shape: 'circle', coords: [randx, randy, rands], preFillColor: 'rgb(0, 0, 128)', title: tags[i].tagName });
             while (this.checkCollision(mapx, 0)) {
                 const randx = 150 + Math.random() * screenx;
                 const randy = 150 + Math.random() * screeny;
@@ -59,32 +65,35 @@ class Thing extends React.Component {
             }
         }
 
+        //make the lines come from a single ball
         let x = mapx.length - 1;
-        for (let i = x; i < 2*x; i++){
-            mapx.unshift({ _id: (i+1).toString(), shape: 'poly', coords: [mapx[x].coords[0], mapx[x].coords[1], mapx[x].coords[0] + 5, mapx[x].coords[1] + 5,
-            mapx[x-1].coords[0] + 5, mapx[x-1].coords[1] + 5, mapx[x-1].coords[0], mapx[x-1].coords[1]], preFillColor: 'black' })
+        let y=x-1;
+        for (let i = x; i <= x+y; i++) {
+            mapx.unshift({
+                _id: (i + 1).toString(), shape: 'poly', coords: [mapx[y].coords[0], mapx[y].coords[1], mapx[y].coords[0] + 5, mapx[y].coords[1] + 5,
+                mapx[i].coords[0] + 5, mapx[i].coords[1] + 5, mapx[i].coords[0], mapx[i].coords[1]], preFillColor: 'grey'
+            })
         }
-        this.setState({ map: { name: 'logo', areas: mapx }, start: 0 }, () => {this.props.forceRender()});
+        console.log(mapx)
+        this.setState({ map: { name: 'logo', areas: mapx }, start: 0 }, () => { this.props.forceRender() });
     }
 
     onclick = (area) => {
         var clicked = area.title;
         var tagArray = tokenservice.getTags();
-        console.log(tagArray)
         let match;
         tagArray.forEach(tag => {
             let str = tag.tagName;
             if (str === clicked)
                 match = tag;
         })
-        console.log(match)
         APIService.postTagsForItems(match)
-        .then(() => {
-            APIService.postTagsForTags(match)
-            .then(() => this.generateCoords());
-        });
+            .then(() => {
+                APIService.postTagsForTags(match)
+                    .then(() => this.generateCoords());
+            });
         //update state?
-        
+
         this.generateCoords();
     }
 
@@ -105,12 +114,12 @@ class Thing extends React.Component {
         })
     }
 
-    test(){
+    test() {
         return <ImageMapper className="map" src={logo} map={this.state.map} onClick={area => this.onclick(area)} width={window.innerWidth - 520} height={window.innerHeight - 150} alt="alt" />
     }
 
     render() {
-        return <div>
+        return <div >
             {this.test()}
             <div className="text">
                 {this.nameRender()}
@@ -118,10 +127,9 @@ class Thing extends React.Component {
         </div>
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.generateCoords();
     }
-
 }
 
 export default Thing;
