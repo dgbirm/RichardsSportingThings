@@ -3,6 +3,7 @@ import ImageMapper from 'react-image-mapper';
 import tokenservice from '../services/tokenservice';
 import APIService from '../services/APIService';
 import logo from '../blank.png';
+import styled, { css, keyframes } from 'styled-components'
 
 class New extends React.Component {
     constructor(props) {
@@ -12,7 +13,6 @@ class New extends React.Component {
 
     checkCollision(mapx, int) {
         for (var i = 0; i < mapx.length; i++) {
-            console.log('' + i + '   ' + int)
             if (i !== int) {
                 var a = mapx[i].coords[0];
                 var b = mapx[i].coords[1];
@@ -20,8 +20,7 @@ class New extends React.Component {
                 var x = mapx[int].coords[0] - a;
                 var y = mapx[int].coords[1] - b;
                 var r = mapx[int].coords[2] + c;
-                if (Math.sqrt(x * x + y * y) < r+ 30) {
-                    console.log('aaaa')
+                if (Math.sqrt(x * x + y * y) < r + 30) {
                     return true;
                 }
             }
@@ -66,12 +65,18 @@ class New extends React.Component {
             }
         }
         let mapy = { name: 'lines', areas: [] };
+        console.log(mapx)
+        let left = mapx[0].coords[0];
+        let top = mapx[0].coords[1];
         let x = mapx.map(i => {
+            var spin = keyframes`from { top: ${top}px; left: ${left}px; }
+            to   { top: ${i.coords[1]}px; left: ${i.coords[0]}px; }`;
+            let Anim = styled.button`animation: ${spin} 1s linear`;
             let style = {
                 width: 2 * i.coords[2],
                 height: 2 * i.coords[2],
                 top: i.coords[1],
-                left: i.coords[0],
+                left: i.coords[0]
             }
             mapy.areas.push({
                 _id: mapy.areas.length.toString(),
@@ -79,9 +84,8 @@ class New extends React.Component {
                 coords: [i.coords[0] - 450, i.coords[1], i.coords[0] - 450, i.coords[1], mapx[0].coords[0] - 450, mapx[0].coords[1], mapx[0].coords[0] - 450, mapx[0].coords[1]],
                 preFillColor: 'black'
             })
-            return <button style={style} onClick={this.onClick} className="newName " value={i.title}>{i.title}</button>
+            return <Anim style={style} onClick={this.onClick} className="newName " value={i.title}>{i.title}</Anim>
         })
-
         let ret = <div>
             <ImageMapper className="map" src={logo} map={mapy} width={window.innerWidth - 520} height={window.innerHeight - 150} alt="alt" />
             {x}
