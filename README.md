@@ -3,7 +3,7 @@ title: Richard's Sporting Things
 category: REST API, Web UX
 layout: 2017/sheet
 tags: [Featured]
-updated: 2020-08-18
+updated: Oct 9 2020
 keywords:
   - React
   - Spring
@@ -51,7 +51,7 @@ If you are unclear on cloning a repository from GH, please follow the instructio
 ### Launching the Backend
 To use this application with the command line, navigate to your local install of the project and run it using the `mvmn` command (`mvmn.bat` for Windows users):
 ```bash
-cd /Directory/of/EMS
+cd /Directory/of/RichardsSportingThings
 # first clean up the output directory,
 # next build the project and verify the outcome
 ./mvnw clean verify --enable-preview 
