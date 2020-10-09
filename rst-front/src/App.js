@@ -24,46 +24,46 @@ class App extends React.Component {
         "precedingnode": null
       }, {
         "tagId": 26,
-        "tagName": "Outdoor & Rectreation",
+        "tagName": "Outdoor & Recreation",
         "isFinal": 0,
         "level": 1,
         "precedingnode": null
       }, {
         "tagId": 25,
-        "tagName": "Exercise & Wellness",
+        "tagName": "Exercise & Wellness ",
         "isFinal": 0,
         "level": 1,
-        "precedingnode": 1
+        "precedingnode": null
       }
     ])
     tokenservice.saveItems([{
       itemName: 'P-TEX Ankle Brace With Stabilizers',
       imageUrl:'https://dks.scene7.com/is/image/dkscdn/17PTEUPTXNKLBRCWSSPM_is/?$DSG_ProductCard$',
-      price: '$1000'
+      price: '1000'
   }, {
     itemName: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
       imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
-      price: '$24.99'
+      price: '24.99'
   }, {
     itemName: 'Wilson Graffiti Outdoor Volleyball',
       imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
-      price: '$19.99'
+      price: '19.99'
   }, {
     itemName: 'Tandem Round Volleyball Blocking Pads',
       imageUrl: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
-      price: '$49.99'
+      price: '49.99'
   }, {
     itemName: 'Spalding King of the Beach USA Replica Outdoor Volleyball',
       imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16SPLUSPLDNGKNGFTVLL_Black_White_is/?$DSG_ProductCard$',
-      price: '$24.99'
+      price: '24.99'
   }, {
     itemName: 'Wilson Graffiti Outdoor Volleyball',
     imageUrl: 'https://dks.scene7.com/is/image/dkscdn/16WILUGRFFTBLLXXXVLL_Multi_is/?$DSG_ProductCard$',
-      price: '$19.99'
+      price: '19.99'
   }, {
     itemName: 'Tandem Round Volleyball Blocking Pads',
       imageUrl: 'https://dks.scene7.com/is/image/dkscdn/17TANURNDVBBLCKNGVLL_is/?$DSG_ProductCard$',
-      price: '$49.99'
+      price: '49.99'
   }])
   }
 
@@ -93,12 +93,12 @@ class App extends React.Component {
     let x = this.background();
     return (
       <div className="App">
-        <Header />
+        <Header  forceRender={this.forceRender}/>
         <div className={x} >
           <Items />
           <div>
             <Thing forceRender={this.forceRender} />
-            <section className="temp">Temporary thing</section>
+            <section className="temp"><p>©Richards Sporting Things 2069</p></section>
           </div>
         </div>
       </div>

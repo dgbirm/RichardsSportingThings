@@ -10,7 +10,7 @@ class Item extends React.Component {
         return <button className='item'>
             <div>
                 <h4>{this.props.name}</h4>
-                {this.props.price}
+                ${this.props.price}
             </div>
             <img src={this.props.imageURL} height='150px' />
         </button>

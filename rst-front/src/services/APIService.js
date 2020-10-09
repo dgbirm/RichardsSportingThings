@@ -22,6 +22,8 @@ const APIService = {
                 if (res.length !== 0) {
                     res.unshift(input);
                     tokenservice.saveTags(res);
+
+                    return res;
                 }
 
             });
@@ -41,8 +43,10 @@ const APIService = {
         return fetch(URL + '/tagitems', postOptions)
             .then(res => res.json())
             .then(res => {
-                if (res.length !== 0)
-                    tokenservice.saveItems(res)
+                if (res.length !== 0) {
+                    tokenservice.saveItems(res);  
+                    return res;                  
+                }
             });
     }
 

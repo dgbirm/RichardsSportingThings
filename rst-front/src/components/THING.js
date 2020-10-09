@@ -47,16 +47,20 @@ class Thing extends React.Component {
     }
 
     generateCoords = () => {
-        this.props.forceRender();
+        this.setState({ tagArray: tokenservice.getTags() })
         var mapx = [];
         let tags = tokenservice.getTags();
-        const screenx = window.innerWidth - 800;
+        const screenx = window.innerWidth/2 ;
         const screeny = window.innerHeight - 500;
-        for (let i = 0; i < tags.length; i++) {
+        let z = tags.length;
+        if (z> 5){
+            z = 5;
+        }
+        for (let i = 0; i < z; i++) {
             const randx = 150 + Math.random() * screenx;
             const randy = 150 + Math.random() * screeny;
             const rands = 80 + Math.random() * 40;
-            mapx.unshift({ _id: i.toString(), shape: 'circle', coords: [randx, randy, rands], preFillColor: 'rgb(0, 0, 128)', title: tags[i].tagName });
+            mapx.unshift({ _id: i.toString(), shape: 'circle', coords: [randx, randy, rands], preFillColor: '#9EE37D', title: tags[i].tagName });
             while (this.checkCollision(mapx, 0)) {
                 const randx = 150 + Math.random() * screenx;
                 const randy = 150 + Math.random() * screeny;
@@ -67,14 +71,13 @@ class Thing extends React.Component {
 
         //make the lines come from a single ball
         let x = mapx.length - 1;
-        let y=x-1;
-        for (let i = x; i <= x+y; i++) {
+        let y = x - 1;
+        for (let i = x; i <= x + y; i++) {
             mapx.unshift({
                 _id: (i + 1).toString(), shape: 'poly', coords: [mapx[y].coords[0], mapx[y].coords[1], mapx[y].coords[0] + 5, mapx[y].coords[1] + 5,
                 mapx[i].coords[0] + 5, mapx[i].coords[1] + 5, mapx[i].coords[0], mapx[i].coords[1]], preFillColor: 'grey'
             })
         }
-        console.log(mapx)
         this.setState({ map: { name: 'logo', areas: mapx }, start: 0 }, () => { this.props.forceRender() });
     }
 
@@ -90,27 +93,32 @@ class Thing extends React.Component {
         APIService.postTagsForItems(match)
             .then(() => {
                 APIService.postTagsForTags(match)
-                    .then(() => this.generateCoords());
+                    .then(res => {
+                        if (res !== undefined)
+                            this.setState({ tagArray: res })
+                        this.generateCoords()
+                    });
             });
         //update state?
 
-        this.generateCoords();
     }
 
     nameRender() {
         let areaDraw = [];
         let mapx = this.state.map.areas;
-        for (let x = this.state.start; x < mapx.length; x++) {
-            areaDraw.push(mapx[x])
+        for (let x = 0; x < mapx.length; x++) {
+            if (mapx[x].shape === "circle")
+                areaDraw.push(mapx[x])
         }
         let x = 0;
         return areaDraw.map(label => {
+            let r = label.coords[2];
             let style = {
-                top: label.coords[1] - 20 - (x * 50),
-                left: label.coords[0] - 50
+                top: label.coords[1] - 75 - (x * 150),
+                left: label.coords[0]  - 85,
             }
             x++;
-            return <div className="name" style={style}>{label.title}</div>
+            return <div className="name" style={style}><p>{label.title}</p></div>
         })
     }
 
@@ -129,6 +137,15 @@ class Thing extends React.Component {
 
     componentDidMount() {
         this.generateCoords();
+    }
+    componentWillMount() {
+        let x = tokenservice.getTags();
+        this.setState({ tagArray: x })
+    }
+    componentWillUpdate() {
+        if (JSON.stringify(this.state.tagArray) !== JSON.stringify(tokenservice.getTags())) {
+            this.generateCoords();
+        }
     }
 }
 
