@@ -114,7 +114,7 @@ public class ItemTagController {
 		if(reducedItems.size() >= 3) {
 			return reducedItems.subList(0, 3);
 		}
-		else if(finalItems.size()>= 4) {
+		else if(finalItems.size()>= 3) {
 			
 	
 				return finalItems.subList(0, 3);
@@ -123,7 +123,7 @@ public class ItemTagController {
 		}
 		}
 		else  {
-			
+			System.out.println("In the else");
 			System.out.println(tags.get(0).getTagId());
 			String precedingNode = tags.get(0).getPrecedingNode();
 			for(ItemTag i: itemTags) {
