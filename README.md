@@ -50,9 +50,15 @@ The frontend for this project lives within the React framework. The CSS uses... 
 If you are unclear on cloning a repository from GH, please follow the instructions [here][ghclone]. *Note:* at some time, this project may be runnable as a single script, but this is not that time.
 
 ### Setting up the test MySQL Database
+*add how to start service*
+
 In the top level of the project, there exits an a script file named **Insert this** that may be used to set up a test database. Using [MySQL Workbench][mysqlWorkbench], navigate to to *Server* > *Data Import*, choose *Import From Self-Contained File* and *Start Import*
 
-*Note*: Before running the application you may need to change the login credentials for your personal instance of `localhost`. This can be done by editing the information in `\RichardsSportingThings\Hackathon-TeamCsGetDegrees-backend\src\main\resources`. By default the, the user is `root` and the password is `password`.
+*Note*: Before running the application you may need to change the login credentials for your personal instance of `localhost`. This can be done by editing the information in `\RichardsSportingThings\Hackathon-TeamCsGetDegrees-backend\src\main\resources`. By default the, the user is `root` and the password is `password`. You can change the password for root to `password` with the command:
+
+``` sql
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+```
 
 ### Launching the Backend
 To use this application with the command line, navigate to your local install of the backend java project and run it using the `mvmn` command (`mvmn.bat` for Windows users):
