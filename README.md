@@ -3,7 +3,7 @@ title: Richard's Sporting Things
 category: REST API, Web UX
 layout: 2017/sheet
 tags: [Featured]
-updated: Oct 9 2020
+updated: Oct 11 2020
 keywords:
   - React
   - Spring
@@ -25,7 +25,8 @@ We have designed a full stack web application ux for a hypothetical Sports Retai
 
 This project incorporates many relevant features of a robust Full-Stack application including but not limited to:
  - REST API
- - **Finish Here**
+ - Relational Database management
+ - Microservice-based architecture featuring 
 
  ### Structure
 This project uses [Spring][spring] Data REST to build hypermedia-powered repositories and [React][react] to leverage easy-to-use views in JavaScript for the web application. 
@@ -33,16 +34,13 @@ This project uses [Spring][spring] Data REST to build hypermedia-powered reposit
 ### Backend
 This project is managed with the [Apache Maven][maven] management tool.
 
-### TODO:
-Specific features of our backend... Something like the following
-
-> `Employee.java` and `Department.java` are POJOs to model employees and departments respectively. Using Spring annotations, these models are transformed into Spring Rest domains. There are a number of department types that inherit from `Department.java` including `Leadership.java` and `Manufacturing.java`.
+The backend architecture is reasonably standard for a Spring boot application POJOs to model important objects are managed in the `model` folder. Using Spring annotations, these models are transformed into Spring Rest domains. HTTP request are handled by `ItemController.java` and `ItemTagController.java`.
 
 ### Data Persistance
 Data persistance has been implemented using the hibernate framework and MySQL to support a RESTful interface.
 
 ### Frontend
-The frontend for this project lives within the React framework. The CSS uses... *any notable packages we use* Note that `npm` is the JS dependency management tool we have chosen to use for this project.
+The frontend for this project lives within the React framework. The CSS uses... *any notable packages we use*. Note that `npm` is the JS dependency management tool we have chosen to use for this project.
 
 ## Usage
 
@@ -50,18 +48,33 @@ The frontend for this project lives within the React framework. The CSS uses... 
 If you are unclear on cloning a repository from GH, please follow the instructions [here][ghclone]. *Note:* at some time, this project may be runnable as a single script, but this is not that time.
 
 ### Setting up the test MySQL Database
-*add how to start service*
+For general information on setting up a mysql database please see the [MySQL Documentation][MySQLdocs].
 
-In the top level of the project, there exits an a script file named **Insert this** that may be used to set up a test database. Using [MySQL Workbench][mysqlWorkbench], navigate to to *Server* > *Data Import*, choose *Import From Self-Contained File* and *Start Import*
+In the `Scripts` directory, there exists an file named `Hackathon_DB.sql` that may be used to set up a test database. Using [MySQL Workbench][mysqlWorkbench], navigate to to *Server* > *Data Import*, choose *Import From Self-Contained File* and *Start Import*. Of course, the same thing can be accomplished using the MySQL command line client.
 
-*Note*: Before running the application you may need to change the login credentials for your personal instance of `localhost`. This can be done by editing the information in `\RichardsSportingThings\Hackathon-TeamCsGetDegrees-backend\src\main\resources`. By default the, the user is `root` and the password is `password`. You can change the password for root to `password` with the command:
+*Note*: Before running the application you may need to change the login credentials for your personal instance of `localhost`. This can be done by editing the information in `\RichardsSportingThings\Hackathon-TeamCsGetDegrees-backend\src\main\resources`. By default the, the user is `root` and the password is `password`. You can change the password for root to `password` for your local instance of MySQL with the command:
 
 ``` sql
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 ```
 
+### Running the application using the archive file
+Also in the `Scripts` there is an archive file of the application called **Finish Here**. Make sure you are using `Java` version 11.0.0 or higher. You can check what version you have with the command 
+
+``` java
+java --version
+```
+
+Now, you can run the application locally by executing the `.jar`
+
+``` java
+java -jar /Path/to/Hackathon-TeamCsGetDegrees-backend-0.0.1-SNAPSHOT.jar
+```
+
+As long as the database is also set up locally as 'root'@'localhost' with password 'password', then you should be able to successfully be able to use the application by navigating to `http://localhost:8080/` in your favorite Web Browser
+
 ### Launching the Backend
-To use this application with the command line, navigate to your local install of the backend java project and run it using the `mvmn` command (`mvmn.bat` for Windows users):
+Of course, this project can be run directly from the source code. To use this application with the command line, navigate to your local install of the backend java project and run it using the `mvmn` command (`mvmn.bat` for Windows users):
 ```bash
 cd /Directory/of/RichardsSportingThings/Hackathon-TeamCsGetDegrees-backend
 # first clean up the output directory,
@@ -84,14 +97,11 @@ At this point with the database set up and both the front and back ends running,
 
 ## Still Under Construction
 
-* ### Animated transitions
-We hope to implement some sort of dynamic transition on a 'button click within the ui
-
 * ### Machine Learning
 We would like to use a machine learning clustering algorithm to generate tag groupings between objects in the data base at some point. So far, we have experimented with...
 
-* ### Frontend integration with spring integration
-At some point, I would like to integrate the front and back ends so that starting the application launches both. For example, I might have to semi-link the front end `index.html` to the location where spring expects it on the back end.
+* ### Scaling the product inventory
+As the product inventory scales upward, there needs to be some attention paid to maintaining the values of this web application as a clean and minimalist. To this end, there needs to be careful consideration when adding tags as part of the hierarchical structure.
 
 
  <!-- Links -->
@@ -101,6 +111,7 @@ At some point, I would like to integrate the front and back ends so that startin
 [react-bootstrap]: https://react-bootstrap.github.io/
 [ghclone]: https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository
 [SpT4]: https://marketplace.eclipse.org/content/spring-tools-4-aka-spring-tool-suite-4
+[MySQLdocs]: https://dev.mysql.com/doc/
 [mysqlWorkbench]: https://www.mysql.com/products/workbench/
 
 [workingExample]: ./exampleImage.jpg
