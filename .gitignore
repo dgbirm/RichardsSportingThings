@@ -1,11 +1,4 @@
 ##############################
-## Project Specific
-##############################
-
-dansML/
-!/Script/Hackathon-TeamCsGetDegrees-backend-0.0.1-SNAPSHOT.jar
-
-##############################
 ## Eclipse
 ##############################
 .settings/
@@ -106,3 +99,10 @@ src/main/web-app/.env.production.local
 src/main/web-app/npm-debug.log*
 src/main/web-app/yarn-debug.log*
 src/main/web-app/yarn-error.log*
+
+##############################
+## Project Specific
+##############################
+
+dansML/
+!Hackathon-TeamCsGetDegrees-backend-0.0.1-SNAPSHOT.jar
