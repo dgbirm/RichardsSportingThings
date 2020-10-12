@@ -114,4 +114,4 @@ As the product inventory scales upward, there needs to be some attention paid to
 [MySQLdocs]: https://dev.mysql.com/doc/
 [mysqlWorkbench]: https://www.mysql.com/products/workbench/
 
-[workingExample]: ./exampleImage.jpg
+[workingExample]: ./exampleImage.png
