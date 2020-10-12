@@ -19,8 +19,8 @@ Richard's Sporting Things
 We have designed a full stack web application ux for a hypothetical Sports Retailer named Richard's Sporting Things. This application is built on the following components: 
   - Spring boot (Java) backend utilizing hibernate and JPA for data persistance
   - Management of MySQL database that supports a many-to-many relationship between:
-   - Retail products with their image url and price
-   - Hierarchical tags used to group these retail products in a meaningful way
+    - Retail products with their image url and price
+    - Hierarchical tags used to group these retail products in a meaningful way
   - Web interface implemented as an application in React JS
 
 This project incorporates many relevant features of a robust Full-Stack application including but not limited to:
@@ -88,7 +88,7 @@ Personally, we work with this project in Eclipse, and so we use the [Spring Tool
 To start the web application, navigate to the `rst-front` folder and use `npm` to  install necessary `node_modules` and start the applications:
 ```bash
 cd RichardsSportingThings/rst-front
-npm i #to build need install packages locally
+npm i #to build install packages locally
 npm start
 ```
 By default, the web application should run on `http://localhost:3000`. *Note:* if you choose to run the application on some other port, you may need to update the `@CrossOrigins` annotation in both `ItemController.java` and `ItemTagController.java` to avoid potential CORS issues.
